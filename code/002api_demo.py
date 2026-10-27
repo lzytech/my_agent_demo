@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv
 from openai import OpenAI
-os.environ['OPENAI_BASE_URL']="https://api.deepseek.com"
-os.environ['OPENAI_API_KEY']="sk-53a9be44d63840b3a3b359b4dab03864"
-client=OpenAI()
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+client=OpenAI(
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
+    base_url="https://api.deepseek.com"
+)
 # for t in [0,0.3,0.6,0.9,1.2,1.5,1.8,2]:
 completion=client.chat.completions.create(
         model="deepseek-flash",

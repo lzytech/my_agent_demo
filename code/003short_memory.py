@@ -1,8 +1,11 @@
 #tokenizer+context_summary+sliding_window
 from deepseek_tokenizer import ds_token
+from dotenv import load_dotenv
 import openai
+import os
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 client=openai.OpenAI(
-    api_key='sk-53a9be44d63840b3a3b359b4dab03864',
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com"
 )
 # 定义函数：接收一个对话列表 message_history
